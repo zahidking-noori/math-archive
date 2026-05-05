@@ -49,8 +49,7 @@
 <div class="navbar">
     <h2>ZOOZBOOZ</h2>
     <button class="nav-btn active" onclick="tab('search')">Search</button>
-    <button class="nav-btn" onclick="tab('apps')">Apps & Games</button>
-</div>
+<button class="nav-btn" onclick="tab('apps')">Reference Tools</button></div>
 
 <div id="search" class="page-container active">
     <div class="main-hero">
