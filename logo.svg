@@ -3,15 +3,14 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
-    <title>ZOOZBOOZ</title>
+    <title>MATH HUB</title>
     
     <script src="baremux/index.js"></script>
     <script src="uv/uv.bundle.js"></script>
     <script src="uv/uv.config.js"></script>
 
     <style>
-    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&amp;display=swap');        
-        body { margin: 0; padding: 0; font-family: 'Inter', sans-serif; background: #0f172a; color: white; overflow-x: hidden; height: 100vh; }
+        body { margin: 0; padding: 0; font-family: sans-serif; background: #0f172a; color: white; overflow-x: hidden; height: 100vh; }
         
         /* Stealth Overlays */
         .logo-wrapper, .desc, footer, h1 { display: none !important; }
@@ -47,35 +46,36 @@
 <body>
 
 <div class="navbar">
-    <h2>ZOOZBOOZ</h2>
+    <h2>MATH HUB</h2>
     <button class="nav-btn active" onclick="tab('search')">Search</button>
-<button class="nav-btn" onclick="tab('apps')">Reference Tools</button></div>
+    <button class="nav-btn" onclick="tab('apps')">Reference Tools</button>
+</div>
 
 <div id="search" class="page-container active">
     <div class="main-hero">
-        <h1>ZOOZBOOZ</h1>
+        <h1>MATH HUB</h1>
         <p class="creator">Created by ibrahim</p>
-        <input type="text" class="fake-input" placeholder="Search the web securely..." onkeydown="if(event.key==='Enter') sync(this.value)" />
+        <input type="text" class="fake-input" placeholder="Search equations securely..." onkeydown="if(event.key==='Enter') sync(this.value)" />
     </div>
 </div>
 
 <div id="apps" class="page-container">
     <div class="main-hero">
-        <h1 style="font-size: 3rem; margin-bottom: 5px;">HUB</h1>
+        <h1 style="font-size: 3rem; margin-bottom: 5px;">TOOLS</h1>
         <p class="creator">Created by ibrahim</p>
     </div>
     <div class="grid">
-        <div class="card" onclick="sync('youtube.com')"><h3>YouTube</h3></div>
+        <div class="card" onclick="sync('youtube.com')"><h3>Video Lectures</h3></div>
         <div class="card" onclick="sync('gemini.google.com')"><h3>Gemini AI</h3></div>
-        <div class="card" onclick="sync('tiktok.com')"><h3>TikTok</h3></div>
+        <div class="card" onclick="sync('tiktok.com')"><h3>Short Formulas</h3></div>
         
-        <div class="card" onclick="sync('poki.com')"><h3>Poki</h3></div>
-        <div class="card" onclick="sync('crazygames.com')"><h3>CrazyGames</h3></div>
-        <div class="card" onclick="sync('1v1.lol')"><h3>1v1.lol</h3></div>
-        <div class="card" onclick="sync('slope.io')"><h3>Slope</h3></div>
-        <div class="card" onclick="sync('emulatorgames.net')"><h3>Retro Games</h3></div>
-        <div class="card" onclick="sync('chess.com')"><h3>Chess.com</h3></div>
-        <div class="card" onclick="sync('roblox.com')"><h3>Roblox</h3></div>
+        <div class="card" onclick="sync('poki.com')"><h3>Logic Puzzles</h3></div>
+        <div class="card" onclick="sync('crazygames.com')"><h3>Physics Sims</h3></div>
+        <div class="card" onclick="sync('1v1.lol')"><h3>Geometry 3D</h3></div>
+        <div class="card" onclick="sync('slope.io')"><h3>Calculus Graph</h3></div>
+        <div class="card" onclick="sync('emulatorgames.net')"><h3>Data Archives</h3></div>
+        <div class="card" onclick="sync('chess.com')"><h3>Strategy Theory</h3></div>
+        <div class="card" onclick="sync('roblox.com')"><h3>Engine Sandbox</h3></div>
     </div>
 </div>
 
