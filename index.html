@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no" />
+    <title>ZOOZBOOZ</title>
+    
+    <script src="baremux/index.js"></script>
+    <script src="uv/uv.bundle.js"></script>
+    <script src="uv/uv.config.js"></script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap');
+        
+        body { margin: 0; padding: 0; font-family: 'Inter', sans-serif; background: #0f172a; color: white; overflow-x: hidden; height: 100vh; }
+        
+        /* Stealth Overlays */
+        .logo-wrapper, .desc, footer, h1 { display: none !important; }
+
+        .navbar { background: #1e293b; padding: 15px 30px; display: flex; gap: 15px; align-items: center; border-bottom: 1px solid #334155; }
+        .navbar h2 { margin: 0; font-weight: 800; color: #38bdf8; letter-spacing: 1px; margin-right: auto; }
+        
+        .nav-btn { background: transparent; border: none; color: #cbd5e1; font-size: 15px; font-weight: 600; cursor: pointer; padding: 8px 15px; border-radius: 8px; transition: 0.2s; }
+        .nav-btn.active { background: #334155; color: white; }
+
+        .page-container { height: calc(100vh - 70px); display: none; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 20px; box-sizing: border-box; }
+        .page-container.active { display: flex; }
+
+        .main-hero h1 { display: block !important; font-size: 5rem; margin: 0; letter-spacing: -3px; }
+        .creator { color: #38bdf8; font-weight: 600; margin-bottom: 30px; letter-spacing: 1px; font-size: 14px; text-transform: uppercase; }
+        
+        .fake-input { width: 100%; max-width: 600px; padding: 20px 25px; border-radius: 30px; border: 1px solid #334155; background: #1e293b; color: white; font-size: 18px; outline: none; text-align: center; box-shadow: 0 10px 30px rgba(0,0,0,0.3); }
+        .fake-input:focus { border-color: #38bdf8; }
+        
+        /* More compact grid for extra games */
+        .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); gap: 12px; width: 100%; max-width: 800px; margin-top: 10px; }
+        .card { background: #1e293b; border-radius: 12px; padding: 15px; text-align: center; cursor: pointer; border: 1px solid #334155; transition: 0.2s; }
+        .card:hover { transform: translateY(-5px); border-color: #38bdf8; background: #243146; }
+        .card h3 { margin: 0; color: #f8fafc; font-size: 14px; }
+
+        #popup { display: none; position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: #000; z-index: 10000; }
+        .controls { position: absolute; top: 10px; right: 10px; z-index: 10001; display: flex; gap: 10px; }
+        .c-btn { background: #334155; color: white; border: none; padding: 8px 15px; border-radius: 5px; cursor: pointer; font-weight: bold; }
+        
+        #uv-frame { position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: none; display: block !important; background: white; }
+    </style>
+</head>
+<body>
+
+<div class="navbar">
+    <h2>ZOOZBOOZ</h2>
+    <button class="nav-btn active" onclick="tab('search')">Search</button>
+    <button class="nav-btn" onclick="tab('apps')">Apps & Games</button>
+</div>
+
+<div id="search" class="page-container active">
+    <div class="main-hero">
+        <h1>ZOOZBOOZ</h1>
+        <p class="creator">Created by ibrahim</p>
+        <input type="text" class="fake-input" placeholder="Search the web securely..." onkeydown="if(event.key==='Enter') sync(this.value)">
+    </div>
+</div>
+
+<div id="apps" class="page-container">
+    <div class="main-hero">
+        <h1 style="font-size: 3rem; margin-bottom: 5px;">HUB</h1>
+        <p class="creator">Created by ibrahim</p>
+    </div>
+    <div class="grid">
+        <div class="card" onclick="sync('youtube.com')"><h3>YouTube</h3></div>
+        <div class="card" onclick="sync('gemini.google.com')"><h3>Gemini AI</h3></div>
+        <div class="card" onclick="sync('tiktok.com')"><h3>TikTok</h3></div>
+        
+        <div class="card" onclick="sync('poki.com')"><h3>Poki</h3></div>
+        <div class="card" onclick="sync('crazygames.com')"><h3>CrazyGames</h3></div>
+        <div class="card" onclick="sync('1v1.lol')"><h3>1v1.lol</h3></div>
+        <div class="card" onclick="sync('slope.io')"><h3>Slope</h3></div>
+        <div class="card" onclick="sync('emulatorgames.net')"><h3>Retro Games</h3></div>
+        <div class="card" onclick="sync('chess.com')"><h3>Chess.com</h3></div>
+        <div class="card" onclick="sync('roblox.com')"><h3>Roblox</h3></div>
+    </div>
+</div>
+
+<div id="popup">
+    <div class="controls">
+        <button class="c-btn" onclick="document.documentElement.requestFullscreen()">Full Screen</button>
+        <button class="c-btn" style="background: #ef4444;" onclick="location.reload()">Close [X]</button>
+    </div>
+    <iframe id="uv-frame" src=""></iframe>
+</div>
+
+<form id="uv-form" style="display:none;">
+    <input id="uv-search-engine" value="https://duckduckgo.com/?q=%s" type="hidden" />
+    <input id="uv-address" type="text" />
+</form>
+
+<script>
+    function tab(id) {
+        document.querySelectorAll('.page-container').forEach(p => p.classList.remove('active'));
+        document.querySelectorAll('.nav-btn').forEach(b => b.classList.remove('active'));
+        document.getElementById(id).classList.add('active');
+        event.target.classList.add('active');
+    }
+
+    function sync(val) {
+        const realInput = document.getElementById('uv-address');
+        const realForm = document.getElementById('uv-form');
+        realInput.value = val;
+        document.getElementById('popup').style.display = 'block';
+        realForm.dispatchEvent(new Event('submit', { cancelable: true, bubbles: true }));
+    }
+
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') location.reload();
+    });
+</script>
+
+<script src="register-sw.js"></script>
+<script src="search.js"></script>
+<script src="index.js"></script>
+
+</body>
+</html>
