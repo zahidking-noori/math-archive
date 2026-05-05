@@ -55,7 +55,7 @@
     <div class="main-hero">
         <h1>ZOOZBOOZ</h1>
         <p class="creator">Created by ibrahim</p>
-        <input type="text" class="fake-input" placeholder="Search the web securely..." onkeydown="if(event.key==='Enter') sync(this.value)">
+        <input type="text" class="fake-input" placeholder="Search the web securely..." onkeydown="if(event.key==='Enter') sync(this.value)" />
     </div>
 </div>
 
